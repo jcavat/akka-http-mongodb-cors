@@ -16,6 +16,14 @@ final case class User(_id: Option[ObjectId], name: String, email: String, tags: 
 final case class Tag(name: String)
 ```
 
+Run mongodb with docker-compose:
+
+```
+docker-compose up -d
+```
+
+Create `db-users` database and `users` collection with mongo-express at [http://localhost:8081](http://localhost:8081)
+
 Run the server with `sbt run` and try:
 
 post some users :
