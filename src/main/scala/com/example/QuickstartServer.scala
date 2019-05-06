@@ -3,10 +3,11 @@ package com.example
 import scala.concurrent.{ Await, ExecutionContext, Future }
 import scala.concurrent.duration.Duration
 import scala.util.{ Failure, Success }
-import akka.actor.{ ActorRef, ActorSystem }
+import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Route
 import akka.stream.ActorMaterializer
+import com.example.repository.MongoUserRepository
 import com.typesafe.config.ConfigFactory
 
 object QuickstartServer extends App with UserRoutes {
@@ -18,7 +19,7 @@ object QuickstartServer extends App with UserRoutes {
   val login: String = ConfigFactory.load().getString("login")
   val password: String = ConfigFactory.load().getString("password")
 
-  val userRegistryActor: ActorRef = system.actorOf(MongoUsersRegistryActor.props(login, password), "userRegistryActor")
+  val userRepository = MongoUserRepository(login, password)
 
   lazy val routes: Route = userRoutes
 

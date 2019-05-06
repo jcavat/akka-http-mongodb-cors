@@ -1,6 +1,5 @@
 package com.example
 
-import com.example.MongoUsersRegistryActor.UserCreated
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import org.bson.types.ObjectId
 import spray.json.{ DefaultJsonProtocol, DeserializationException, JsString, JsValue, JsonFormat }
@@ -18,7 +17,7 @@ trait JsonSupport extends SprayJsonSupport {
     }
   }
 
-  implicit val tagJsonFormat = jsonFormat1(Tag)
-  implicit val userJsonFormat = jsonFormat4(User)
-  implicit val userCreatedJsonFormat = jsonFormat1(UserCreated)
+  implicit val tagJsonFormat = jsonFormat1(Domain.Tag)
+  implicit val userJsonFormat = jsonFormat4(Domain.User)
+  implicit val userCreatedJsonFormat = jsonFormat1(Dto.Id)
 }
